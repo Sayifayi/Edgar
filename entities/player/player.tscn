@@ -4,8 +4,8 @@
 [ext_resource path="res://entities/player/playerSprites/EdgarPrototype(5).png" type="Texture" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 81.0
-height = 308.0
+radius = 132.0
+height = 250.0
 
 [node name="player" type="KinematicBody2D"]
 position = Vector2( 573, 286 )
@@ -16,6 +16,5 @@ texture = ExtResource( 2 )
 offset = Vector2( 0, -210 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( 1, 2 )
+position = Vector2( 2, -198 )
 shape = SubResource( 1 )

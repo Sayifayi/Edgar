@@ -6,9 +6,10 @@
 extents = Vector2( 86.5, 53.5 )
 
 [node name="Interactable" type="Area2D"]
+position = Vector2( 259, 123 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 272.5, 197.5 )
+position = Vector2( 0, 1 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="CollisionShape2D"]

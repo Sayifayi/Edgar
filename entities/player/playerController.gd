@@ -1,13 +1,20 @@
 extends KinematicBody2D
 
 var path : PoolVector2Array
+
 onready var nav2D : Navigation2D = $"../Navigation2D"
+onready var interactableObjects : Area2D = $"../interactableObjects"
 
 export var speed = 200
 
 #Defines default state and possible player states
 enum{IDLE, MOVE, INTERACT}
 var state = IDLE
+
+var will_interact : bool
+var interactable
+
+#========================== END OF VARIABLE DEFINITION =============================#
 
 
 # Called when the node enters the scene tree for the first time.
@@ -38,7 +45,7 @@ func movePath(move_distance):
 	if (startingPoint.x > path[0].x):
 		get_node("playerSprite").set_flip_h(true)
 	
-	#Iterates upon path created on player controller
+	#Iterates through player path
 	for i in range (path.size()):
 		var distance_to_next = startingPoint.distance_to(path[0])
 		 
@@ -46,14 +53,19 @@ func movePath(move_distance):
 		if (move_distance <= distance_to_next):
 			position  = startingPoint.linear_interpolate(path[0], move_distance / distance_to_next)
 			break
-		#Clears array
+			
 		path.remove(0)
 		
 		#Ends movement state
 		if (path.size() == 0):
-			changeState(IDLE)
-			
-			
+			if (will_interact):
+				changeState(INTERACT)
+			else:
+				changeState(IDLE)
+		
+
+
+
 func changeState(newState):
 	state = newState
 	match state:
@@ -61,7 +73,11 @@ func changeState(newState):
 			pass
 		MOVE:
 			pass
+		INTERACT:
+			pass
+		
 	
+
 
 func _input(event):
 	if !Input.is_action_pressed("ui_leftMouseClick"):
@@ -72,8 +88,16 @@ func _input(event):
 	#sets path for player node
 	path = new_path
 	
+	will_interact = false
+	
 	#Triggers player Move state
 	changeState(MOVE)
+
+
+func _on_interactableObjects_input_event(viewport, event, shape_idx):
+	if !Input.is_action_pressed("ui_leftMouseClick"):
+		return
 	
-
-
+	will_interact = true
+	interactable = interactableObjects.get_child(shape_idx)
+	print("BANG!")
