@@ -1,0 +1,25 @@
+{
+	"events": [
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "El lobby del teatro se ve deteriorado. "
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Las luces titilan periódicamente y el ambiente lo llena el aroma a crispetas quemadas proveniente de una máquina cromada de medidados de los 60's."
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 1
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1668390297.json",
+		"name": "entradaLobby"
+	}
+}

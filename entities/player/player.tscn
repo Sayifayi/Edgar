@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://entities/player/playerMotion.gd" type="Script" id=1]
+[ext_resource path="res://entities/player/playerSprites/EdgarPrototype(5).png" type="Texture" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 81.0
+height = 308.0
+
+[node name="player" type="KinematicBody2D"]
+position = Vector2( 573, 286 )
+script = ExtResource( 1 )
+
+[node name="playerSprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+offset = Vector2( 0, -210 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 1, 2 )
+shape = SubResource( 1 )

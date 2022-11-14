@@ -1,0 +1,29 @@
+{
+	"color": "#ff680e85",
+	"description": "",
+	"display_name": "",
+	"display_name_bool": false,
+	"id": "character-1668388348.json",
+	"mirror_portraits": false,
+	"name": "La Brújula",
+	"nickname": "",
+	"nickname_bool": false,
+	"offset_x": 930,
+	"offset_y": -140,
+	"portraits": [
+		{
+			"name": "Default",
+			"path": "res://entities/npcs/Brujula/brujulaIdle.png"
+		},
+		{
+			"name": "brujulaIDK",
+			"path": "res://entities/npcs/Brujula/brujulaIDK.png"
+		},
+		{
+			"name": "brujulaConcern",
+			"path": "res://entities/npcs/Brujula/brujulaConcern.png"
+		}
+	],
+	"scale": 100,
+	"theme": ""
+}
