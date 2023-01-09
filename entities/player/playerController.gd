@@ -3,16 +3,15 @@ extends KinematicBody2D
 var path : PoolVector2Array
 
 onready var nav2D : Navigation2D = $"../Navigation2D"
-onready var interactableObjects : Area2D = $"../interactableObjects"
-
+onready var interactable : Area2D = $"../interactable"
 export var speed = 200
 
 #Defines default state and possible player states
 enum{IDLE, MOVE, INTERACT}
 var state = IDLE
 
-var will_interact : bool
-var interactable
+var will_interact: bool
+var interactionObject
 
 #========================== END OF VARIABLE DEFINITION =============================#
 
@@ -32,6 +31,10 @@ func _process(delta):
 			pass
 		MOVE:
 			movePath(move_distance)
+		INTERACT:
+			print("INTERACTING")
+	
+	print(will_interact)
 
 
 #Defines player movement
@@ -59,14 +62,12 @@ func movePath(move_distance):
 		#Ends movement state
 		if (path.size() == 0):
 			if (will_interact):
-				changeState(INTERACT)
+				changeAnimState(INTERACT)
 			else:
-				changeState(IDLE)
-		
+				changeAnimState(IDLE)
 
-
-
-func changeState(newState):
+#Changes state and triggers animation change
+func changeAnimState(newState):
 	state = newState
 	match state:
 		IDLE:
@@ -75,8 +76,6 @@ func changeState(newState):
 			pass
 		INTERACT:
 			pass
-		
-	
 
 func _input(event):
 	if !Input.is_action_pressed("ui_leftMouseClick"):
@@ -90,13 +89,10 @@ func _input(event):
 	will_interact = false
 	
 	#Triggers player Move state
-	changeState(MOVE)
+	changeAnimState(MOVE)
 
-
-func _on_interactableObjects_input_event(viewport, event, shape_idx):
+func _on_interactable_input_event(viewport, event, shape_idx):
 	if !Input.is_action_pressed("ui_leftMouseClick"):
 		return
-	
 	will_interact = true
-	interactable = interactableObjects.get_child(shape_idx)
-	print("BANG!")
+	interactionObject = interactable.get_child(shape_idx)
