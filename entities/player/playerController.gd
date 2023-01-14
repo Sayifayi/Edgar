@@ -3,7 +3,7 @@ extends KinematicBody2D
 var path : PoolVector2Array
 
 onready var nav2D : Navigation2D = $"../Navigation2D"
-onready var interactable : Area2D = $"../interactable"
+onready var interactable : Area2D = $"../interact"
 export var speed = 200
 
 #Defines default state and possible player states
@@ -34,7 +34,6 @@ func _process(delta):
 		INTERACT:
 			print("INTERACTING")
 	
-	print(will_interact)
 
 
 #Defines player movement
@@ -91,8 +90,3 @@ func _input(event):
 	#Triggers player Move state
 	changeAnimState(MOVE)
 
-func _on_interactable_input_event(viewport, event, shape_idx):
-	if !Input.is_action_pressed("ui_leftMouseClick"):
-		return
-	will_interact = true
-	interactionObject = interactable.get_child(shape_idx)
